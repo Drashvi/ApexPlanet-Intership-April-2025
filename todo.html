@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List | Drashvi</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e3f2fd, #fff3e0);
+      padding: 40px 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0d47a1;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .todo-container {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      padding: 12px;
+      font-size: 1rem;
+      border: 2px solid #90caf9;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    button {
+      padding: 12px 18px;
+      font-size: 1rem;
+      background: #42a5f5;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #1e88e5;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      background: #f1f8e9;
+      margin: 12px 0;
+      padding: 14px 20px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.05rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .done {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .task-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      padding: 6px 10px;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-done {
+      background: #66bb6a;
+    }
+
+    .btn-delete {
+      background: #ef5350;
+    }
+
+    .back-btn {
+      display: block;
+      width: fit-content;
+      margin: 20px auto;
+      text-align: center;
+      background-color: #0077cc;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <h1>📝 My To-Do List</h1>
+
+  <div class="todo-container">
+    <div class="input-group">
+      <input type="text" id="taskInput" placeholder="Add a new task..." />
+      <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <a href="index.html" class="back-btn">← Back to Portfolio</a>
+
+  <script>
+    // Load tasks from localStorage when page loads
+    document.addEventListener('DOMContentLoaded', loadTasks);
+
+    function loadTasks() {
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      const taskList = document.getElementById('taskList');
+      taskList.innerHTML = '';
+      
+      tasks.forEach(task => {
+        const li = createTaskElement(task.text, task.done);
+        taskList.appendChild(li);
+      });
+    }
+
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const taskText = input.value.trim();
+      
+      if (taskText === '') {
+        alert('Please enter a task!');
+        return;
+      }
+
+      const li = createTaskElement(taskText, false);
+      document.getElementById('taskList').appendChild(li);
+      
+      // Save to localStorage
+      saveTasksToStorage();
+      
+      // Clear input
+      input.value = '';
+    }
+
+    function createTaskElement(text, isDone) {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span class="${isDone ? 'done' : ''}">${text}</span>
+        <div class="task-buttons">
+          <button class="btn btn-done" onclick="toggleDone(this)">✓</button>
+          <button class="btn btn-delete" onclick="deleteTask(this)">×</button>
+        </div>
+      `;
+      return li;
+    }
+
+    function toggleDone(btn) {
+      const span = btn.parentElement.parentElement.querySelector('span');
+      span.classList.toggle('done');
+      saveTasksToStorage();
+    }
+
+    function deleteTask(btn) {
+      btn.parentElement.parentElement.remove();
+      saveTasksToStorage();
+    }
+
+    function saveTasksToStorage() {
+      const tasks = [];
+      document.querySelectorAll('#taskList li').forEach(li => {
+        tasks.push({
+          text: li.querySelector('span').textContent,
+          done: li.querySelector('span').classList.contains('done')
+        });
+      });
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    // Add task when Enter key is pressed
+    document.getElementById('taskInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        addTask();
+      }
+    });
+  </script>
+</body>
+</html>
