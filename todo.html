@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List | Drashvi</title>
+  <style>
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0e7ff 0%, #fffde4 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .header-bar {
+      width: 100%;
+      background: linear-gradient(90deg, #6366f1 60%, #8b5cf6 100%);
+      box-shadow: 0 2px 12px rgba(99,102,241,0.08);
+      padding: 2rem 0 1rem 0;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+    }
+    .header-bar h1 {
+      color: #fff;
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 0;
+      text-shadow: 0 2px 8px #818cf8;
+    }
+
+    .todo-container {
+      background: #fff;
+      padding: 2.5rem 2rem 2rem 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgba(99,102,241,0.10), 0 1.5px 8px rgba(139,92,246,0.08);
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+    }
+
+    .input-group {
+      display: flex;
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
+    input {
+      flex: 1;
+      padding: 0.9rem 1.1rem;
+      font-size: 1.08rem;
+      border: 2px solid #a5b4fc;
+      border-radius: 1rem;
+      outline: none;
+      background: #f3f4f6;
+      transition: border 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 4px rgba(99,102,241,0.04);
+    }
+    input:focus {
+      border: 2px solid #6366f1;
+      box-shadow: 0 2px 8px #c7d2fe;
+    }
+    button {
+      padding: 0.9rem 1.3rem;
+      font-size: 1.08rem;
+      background: linear-gradient(90deg, #6366f1 60%, #8b5cf6 100%);
+      color: #fff;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 2px 8px #c7d2fe;
+      transition: background 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #4f46e5 60%, #7c3aed 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      background: #f3f4f6;
+      margin: 0.7rem 0;
+      padding: 1.1rem 1.2rem;
+      border-radius: 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.08rem;
+      box-shadow: 0 1.5px 8px rgba(139,92,246,0.06);
+      animation: fadeInUp 0.4s cubic-bezier(.4,0,.2,1);
+      transition: background 0.2s;
+      position: relative;
+    }
+    li .done {
+      text-decoration: line-through;
+      color: #a1a1aa;
+      opacity: 0.7;
+      transition: color 0.2s;
+    }
+    .task-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn {
+      padding: 0.5rem 0.7rem;
+      font-size: 1.1rem;
+      border-radius: 0.7rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 1px 4px #e0e7ff;
+    }
+    .btn-done {
+      background: #bbf7d0;
+      color: #059669;
+    }
+    .btn-done:hover {
+      background: #4ade80;
+      color: #065f46;
+      transform: scale(1.1);
+    }
+    .btn-delete {
+      background: #fecaca;
+      color: #dc2626;
+    }
+    .btn-delete:hover {
+      background: #f87171;
+      color: #7f1d1d;
+      transform: scale(1.1);
+    }
+    .btn svg {
+      width: 1.1em;
+      height: 1.1em;
+      vertical-align: middle;
+    }
+    .back-btn {
+      display: block;
+      width: fit-content;
+      margin: 1.5rem auto 0 auto;
+      text-align: center;
+      background: linear-gradient(90deg, #6366f1 60%, #8b5cf6 100%);
+      color: white;
+      padding: 0.8rem 1.7rem;
+      border-radius: 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.08rem;
+      box-shadow: 0 2px 8px #c7d2fe;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .back-btn:hover {
+      background: linear-gradient(90deg, #4f46e5 60%, #7c3aed 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+    @media (max-width: 600px) {
+      .todo-container {
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+        max-width: 98vw;
+      }
+      .header-bar {
+        padding: 1.2rem 0 0.7rem 0;
+      }
+      .header-bar h1 {
+        font-size: 1.3rem;
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h1>📝 My To-Do List</h1>
+  </div>
+  <div class="todo-container">
+    <div class="input-group">
+      <input type="text" id="taskInput" placeholder="Add a new task..." />
+      <button onclick="addTask()"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 4v16m8-8H4'/></svg> Add</button>
+    </div>
+    <ul id="taskList"></ul>
+  </div>
+  <a href="index.html" class="back-btn">← Back to Portfolio</a>
+  <script>
+    // Load tasks from localStorage when page loads
+    document.addEventListener('DOMContentLoaded', loadTasks);
+
+    function loadTasks() {
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      const taskList = document.getElementById('taskList');
+      taskList.innerHTML = '';
+      
+      tasks.forEach(task => {
+        const li = createTaskElement(task.text, task.done);
+        taskList.appendChild(li);
+      });
+    }
+
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const taskText = input.value.trim();
+      
+      if (taskText === '') {
+        alert('Please enter a task!');
+        return;
+      }
+
+      const li = createTaskElement(taskText, false);
+      document.getElementById('taskList').appendChild(li);
+      
+      // Save to localStorage
+      saveTasksToStorage();
+      
+      // Clear input
+      input.value = '';
+    }
+
+    function createTaskElement(text, isDone) {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span class="${isDone ? 'done' : ''}">${text}</span>
+        <div class="task-buttons">
+          <button class="btn btn-done" onclick="toggleDone(this)"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/></svg></button>
+          <button class="btn btn-delete" onclick="deleteTask(this)"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/></svg></button>
+        </div>
+      `;
+      return li;
+    }
+
+    function toggleDone(btn) {
+      const span = btn.parentElement.parentElement.querySelector('span');
+      span.classList.toggle('done');
+      saveTasksToStorage();
+    }
+
+    function deleteTask(btn) {
+      btn.parentElement.parentElement.remove();
+      saveTasksToStorage();
+    }
+
+    function saveTasksToStorage() {
+      const tasks = [];
+      document.querySelectorAll('#taskList li').forEach(li => {
+        tasks.push({
+          text: li.querySelector('span').textContent,
+          done: li.querySelector('span').classList.contains('done')
+        });
+      });
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    // Add task when Enter key is pressed
+    document.getElementById('taskInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        addTask();
+      }
+    });
+  </script>
+</body>
+</html>

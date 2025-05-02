@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Listing | Drashvi</title>
+  <link rel="stylesheet" href="productstyle.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🛍️ Product Listing</h1>
+
+    <div class="filters">
+      <div class="filter-group">
+        <label for="category">Category:</label>
+        <select id="category" onchange="filterProducts()">
+          <option value="all">All Categories</option>
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Clothing</option>
+          <option value="books">Books</option>
+          <option value="food">Food</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="price">Max Price:</label>
+        <input type="number" id="price" placeholder="Enter max price (₹)" onchange="filterProducts()">
+      </div>
+
+      <div class="filter-group">
+        <label for="sort">Sort By:</label>
+        <select id="sort" onchange="filterProducts()">
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Rating</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← Back to Portfolio</a>
+
+  <script>
+   const products = [
+  {
+    id: 1,
+    name: "boAt Rockerz 450 Pro",
+    price: 1999,
+    category: "electronics",
+    rating: 4.5,
+    image: "images/Rockerz_450_Pro_16.webp"
+  },
+  {
+    id: 2,
+    name: "Cotton Kurta",
+    price: 899,
+    category: "clothing",
+    rating: 4.2,
+    image: "images/cotton kurta.jpg"
+  },
+  {
+    id: 3,
+    name: "Let Us C by Yashwant Kanetkar",
+    price: 299,
+    category: "books",
+    rating: 4.8,
+    image: "images/C book.jpg"
+  },
+  {
+    id: 4,
+    name: "Fire-Boltt Smartwatch",
+    price: 2499,
+    category: "electronics",
+    rating: 4.6,
+    image: "images/fire bolt watch.webp"
+  },
+  {
+    id: 5,
+    name: "Ethnic Saree",
+    price: 1499,
+    category: "clothing",
+    rating: 4.7,
+    image: "images/saree.jpg"
+  },
+  {
+    id: 6,
+    name: "Data Structures using C++",
+    price: 449,
+    category: "books",
+    rating: 4.5,
+    image: "images/Dsa by c++.webp"
+  },
+  {
+    id: 7,
+    name: "Haldiram's Bhujia Sev",
+    price: 120,
+    category: "food",
+    rating: 4.6,
+    image: "images/bhujiya.webp"
+  },
+  {
+    id: 8,
+    name: "Gulab Jamun (500g)",
+    price: 180,
+    category: "food",
+    rating: 4.8,
+    image: "images/gulabjamun.jpeg"
+  }
+];
+
+    function getStars(rating) {
+      const full = Math.floor(rating);
+      const half = rating % 1 >= 0.25 && rating % 1 <= 0.75;
+      const empty = 5 - full - (half ? 1 : 0);
+
+      return (
+        '<i class="fas fa-star"></i>'.repeat(full) +
+        (half ? '<i class="fas fa-star-half-alt"></i>' : '') +
+        '<i class="far fa-star"></i>'.repeat(empty)
+      );
+    }
+
+    function filterProducts() {
+      const category = document.getElementById('category').value;
+      const maxPrice = document.getElementById('price').value;
+      const sortBy = document.getElementById('sort').value;
+
+      let filteredProducts = [...products];
+
+      if (category !== 'all') {
+        filteredProducts = filteredProducts.filter(p => p.category === category);
+      }
+
+      if (maxPrice) {
+        filteredProducts = filteredProducts.filter(p => p.price <= maxPrice);
+      }
+
+      switch (sortBy) {
+        case 'price-asc':
+          filteredProducts.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-desc':
+          filteredProducts.sort((a, b) => b.price - a.price);
+          break;
+        case 'rating':
+          filteredProducts.sort((a, b) => b.rating - a.rating);
+          break;
+      }
+
+      displayProducts(filteredProducts);
+    }
+
+    function displayProducts(products) {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = '';
+
+      products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" class="product-image">
+          <h3 class="product-title">${product.name}</h3>
+          <div class="product-price">₹${product.price.toLocaleString('en-IN')}</div>
+          <div class="product-rating">
+            ${getStars(product.rating)} <span class="rating-number">(${product.rating})</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    displayProducts(products);
+  </script>
+</body>
+</html>

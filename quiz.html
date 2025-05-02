@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Dev Quiz</title>
+  <link rel="stylesheet" href="style.css" /> <!-- Optional -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #000000;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #ffffff;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #007acc;
+    }
+
+    header p {
+      margin: 0.25rem;
+      color: #444;
+    }
+
+    .quiz-section {
+      background: #161616;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .quiz-section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .quiz-question {
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-question p {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+
+    label {
+      display: block;
+      margin: 0.3rem 0;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #007acc;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 1rem;
+    }
+
+    .btn:hover {
+      background: #005f99;
+    }
+
+    #quiz-result {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #28a745;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .back-link {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .back-link a {
+      color: #007acc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Highlight correct & wrong answers */
+.correct-answer {
+  background-color: #d4edda;
+  color: #155724;
+  border-left: 4px solid #28a745;
+  padding: 0.3rem;
+  border-radius: 6px;
+}
+
+.wrong-answer {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid #dc3545;
+  padding: 0.3rem;
+  border-radius: 6px;
+}
+
+/* Smooth radio group spacing */
+.quiz-question label {
+  padding: 0.2rem 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.quiz-question label:hover {
+  background-color: #1e1e1e;
+  border-radius: 6px;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧠 Web Dev Quiz</h1>
+    <p id="dayDate"></p>
+    <p id="weather"></p>
+  </header>
+
+  <section id="quiz" class="quiz-section">
+    <h2>💡 Test Your Knowledge</h2>
+    <div id="quiz-container"></div>
+    <button id="submit-quiz" class="btn">Submit Answers</button>
+    <p id="quiz-result"></p>
+  </section>
+
+  <div class="back-link">
+    <a href="index.html">🔙 Back to Portfolio</a>
+  </div>
+
+  <script src="quiz.js"></script>
+</body>
+</html>

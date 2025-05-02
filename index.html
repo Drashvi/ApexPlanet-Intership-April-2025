@@ -5,12 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Drashvi's Web Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1>🌐 Drashvi's Portfolio</h1>
-    <p>Web Development Enthusiast</p>
+    <div class="theme-toggle">
+      <button id="themeToggle" class="theme-btn">
+        <span class="light-icon">☀️</span>
+        <span class="dark-icon">🌙</span>
+      </button>
+    </div>
+    <h1>My Portfolio</h1>
+    <p></p> <!-- Typing effect text -->
+    <div id="weatherDateContainer">
+      <span id="weather"></span> |
+      <span id="dayDate"></span>
+    </div>
   </header>
+  
 
   <!-- Welcome Button -->
   <button class="special-btn" onclick="showMessage()">Welcome to My Portfolio 🎉</button>
@@ -46,40 +58,99 @@
     </div>
   </section>
 
-  <!-- ✅ Container 3: Projects -->
-  <section class="container projects">
-    <h2>🚀 My Projects</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <h3>🏫 School Management System</h3>
-        <p>A desktop application developed using <b>Python & CSV</b> to efficiently store and manage student, teacher, and staff data.</p>
-        <a href="https://github.com/Drashvi/School-Mnagement-System" target="_blank" class="btn">🔗 View Project</a>
-      </div>
-      <div class="project-card">
-        <h3>🎓 Smart Campus App</h3>
-        <p>Designed a platform to solve campus-related problems with <b>real-time event tracking</b>.</p>
-        <a href="https://github.com/TheDeceiver31/Fuzz_our-college-app" target="_blank" class="btn">🔗 View Project</a>
-      </div>
+<!-- ✅ Container 3: Projects -->
+<section class="container projects">
+  <h2>🚀 My Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <h3>🏫 School Management System</h3>
+      <p>A desktop application developed using <b>Python & CSV</b> to efficiently store and manage student, teacher, and staff data.</p>
+      <a href="https://github.com/Drashvi/School-Mnagement-System" target="_blank" class="btn">🔗 View Project</a>
     </div>
-  </section>
+    <div class="project-card">
+      <h3>🎓 Smart Campus App</h3>
+      <p>Designed a platform to solve campus-related problems with <b>real-time event tracking</b>.</p>
+      <a href="https://github.com/TheDeceiver31/Fuzz_our-college-app" target="_blank" class="btn">🔗 View Project</a>
+    </div>
+</section>
+
+<!-- ✅ Container 4: My List -->
+<section class="container" id="my-list">
+  <h2>📋 My List</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <h3>📝 To-Do List</h3>
+      <p>A responsive To-Do app with personalized task management and local storage.</p>
+      <a href="todo.html" target="_blank" class="btn">Open To-Do List</a>
+    </div>
+
+    <div class="project-card">
+      <h3>🛍️ Product Listing</h3>
+      <p>Browse products with filtering and sorting capabilities.</p>
+      <a href="products.html" target="_blank" class="btn">View Products</a>
+    </div>
+</section>
+
+<div class="quiz-start-wrapper">
+  <a href="quiz.html">
+    <button id="start-quiz">🧠 Start Web Dev Quiz</button>
+  </a>
+</div>
+
+
 
   <!-- Links Section -->
-  <section class="links">
-    <p>Check out more projects:</p>
-    <a href="https://github.com/Drashvi" target="_blank" class="btn">GitHub</a>
-    <a href="https://www.linkedin.com/in/drashvi-thoriya-2759b1320/" target="_blank" class="btn linkedin">LinkedIn</a>
-  </section>
+  <div class="social-links">
+    <a href="https://github.com/Drashvi" target="_blank" class="social-btn github">
+      <span>GitHub</span>
+    </a>
+    <a href="https://www.linkedin.com/in/drashvi-thoriya-2759b1320/" target="_blank" class="social-btn linkedin">
+      <span>LinkedIn</span>
+    </a>
+  </div>
 
+  <section class="container contact">
+    <h2>📬 Contact Me</h2>
+    <form id="contactForm" class="contact-form" action="https://formspree.io/f/xblgnlev" method="POST">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="formStatus" class="form-status"></p>
+  </section>
+  
 
   <script src="script.js"></script>
 
   <!-- Custom Alert Modal -->
-    <div class="custom-alert" id="customAlert">
-        <div class="alert-box">
-        <p>Thanks for visiting Drashvi's Portfolio! ✨</p>
-        <button onclick="closeAlert()">Close</button>
-        </div>
+  <div class="custom-alert" id="customAlert">
+    <div class="alert-box">
+      <p>Thanks for visiting Drashvi's Portfolio! ✨</p>
+      <button onclick="closeAlert()">Close</button>
     </div>
-  
+  </div>
+
+  <footer>
+    <p class="thank-you">Thanks for visiting Drashvi's Portfolio! ✨</p>
+  </footer>
+
+  <script>
+    window.showMessage = showMessage;
+    window.closeAlert = closeAlert;
+  </script>
+
 </body>
 </html>
