@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drashvi's Web Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="my pic.jpg" type="image/jpeg">
+</head>
+<body>
+  <!-- Modern Header -->
+  <nav class="main-header glassy" style="position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(30,41,59,0.7);border-radius:0 0 1.5rem 1.5rem;box-shadow:0 4px 24px rgba(0,0,0,0.10);display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;">
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span style="font-size:2rem;font-weight:700;color:var(--primary-color);background:var(--bg-tertiary);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;">DT</span>
+      <span style="font-size:1.1rem;color:var(--text-secondary);font-style:italic;">Web Developer & Tech Enthusiast</span>
+    </div>
+    <ul style="display:flex;gap:2rem;list-style:none;">
+      <li><a href="#hero" style="color:var(--primary-color);text-decoration:none;font-weight:500;">Home</a></li>
+      <li><a href="#about" style="color:var(--primary-color);text-decoration:none;font-weight:500;">About</a></li>
+      <li><a href="#skills" style="color:var(--primary-color);text-decoration:none;font-weight:500;">Skills</a></li>
+      <li><a href="#projects" style="color:var(--primary-color);text-decoration:none;font-weight:500;">Projects</a></li>
+      <li><a href="#awards" style="color:var(--primary-color);text-decoration:none;font-weight:500;">Awards</a></li>
+      <li><a href="#contact" style="color:var(--primary-color);text-decoration:none;font-weight:500;">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <div class="theme-toggle">
+      <button id="themeToggle" class="theme-btn">
+        <span class="light-icon">☀️</span>
+        <span class="dark-icon">🌙</span>
+      </button>
+    </div>
+    <h1>My Portfolio</h1>
+    <p></p> <!-- Typing effect text -->
+    <div id="weatherDateContainer">
+      <span id="weather"></span> |
+      <span id="dayDate"></span>
+    </div>
+  </header>
+
+  <!-- Welcome Button -->
+  <button class="special-btn" onclick="showMessage()">Welcome to My Portfolio 🎉</button>
+
+  <!-- About Me Section -->
+  <section class="container about" id="about" style="display:flex;flex-wrap:wrap;align-items:center;gap:2.5rem;justify-content:center;margin-top:2.5rem;">
+    <div class="profile" style="flex:1;min-width:220px;text-align:center;">
+      <img src="my pic.jpg" alt="Drashvi's Picture" class="profile-img" style="width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid var(--primary-color);box-shadow:0 4px 24px rgba(0,0,0,0.10);">
+    </div>
+    <div class="about-text" style="flex:2;min-width:260px;">
+      <h2 style="color:var(--primary-color);margin-bottom:1rem;font-size:1.8rem;">About Me</h2>
+      <p style="font-size:1.1rem;">Hi, I'm <b>Drashvi</b>! A passionate web developer exploring modern technologies. I love creating intuitive and interactive web experiences using HTML, CSS, JavaScript, and more!</p>
+      <blockquote class="quote" style="margin:1.5rem 0 0.5rem 0;padding:1rem 1.5rem;background:var(--bg-tertiary);border-left:4px solid var(--accent-color);border-radius:0.7rem;font-style:italic;color:var(--primary-color);box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+        "The best way to predict the future is to create it." – Alan Kay
+      </blockquote>
+      <div style="margin-top:1rem;font-size:1rem;color:var(--text-secondary);font-style:italic;">Fun fact: I can code and make chai at the same time ☕💻</div>
+    </div>
+  </section>
+
+  <!-- Container 2: Skills -->
+  <section class="container skills" id="skills" data-aos="fade-up">
+    <h2>💡 My Skills</h2>
+    <div class="skills-container">
+      <div class="skill">C / C++ <span class="skill-badge">Advanced</span><div class="skill-bar"><div class="skill-level" style="width:90%"></div></div></div>
+      <div class="skill">Python <span class="skill-badge">Advanced</span><div class="skill-bar"><div class="skill-level" style="width:90%"></div></div></div>
+      <div class="skill">HTML & CSS <span class="skill-badge">Expert</span><div class="skill-bar"><div class="skill-level" style="width:95%"></div></div></div>
+      <div class="skill">JavaScript <span class="skill-badge">Advanced</span><div class="skill-bar"><div class="skill-level" style="width:85%"></div></div></div>
+      <div class="skill">React.js <span class="skill-badge">Intermediate</span><div class="skill-bar"><div class="skill-level" style="width:75%"></div></div></div>
+      <div class="skill">Node.js <span class="skill-badge">Intermediate</span><div class="skill-bar"><div class="skill-level" style="width:70%"></div></div></div>
+      <div class="skill">Firebase <span class="skill-badge">Intermediate</span><div class="skill-bar"><div class="skill-level" style="width:70%"></div></div></div>
+    </div>
+    <div class="techstack" style="margin-top:2rem;">
+      <h3 style="color:var(--primary-color);margin-bottom:0.7rem;">Tech Stack</h3>
+      <div class="techstack-grid">
+        <div class="tech-icon" data-tooltip="HTML5"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"></div>
+        <div class="tech-icon" data-tooltip="CSS3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"></div>
+        <div class="tech-icon" data-tooltip="JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"></div>
+        <div class="tech-icon" data-tooltip="Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"></div>
+        <div class="tech-icon" data-tooltip="React"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"></div>
+        <div class="tech-icon" data-tooltip="Node.js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"></div>
+        <div class="tech-icon" data-tooltip="Firebase"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase"></div>
+        <div class="tech-icon" data-tooltip="Git"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"></div>
+        <div class="tech-icon" data-tooltip="GitHub"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="background:#fff;border-radius:50%;padding:2px;"></div>
+        <div class="tech-icon" data-tooltip="Figma"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"></div>
+        <div class="tech-icon" data-tooltip="VS Code"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"></div>
+        <div class="tech-icon" data-tooltip="Netlify"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" alt="Netlify"></div>
+      </div>
+    </div>
+  </section>
+
+<!-- ✅ Container 3: Projects -->
+<section class="container projects" id="projects" data-aos="fade-up">
+  <h2>🚀 My Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-tags"><span class="tag">Python</span><span class="tag">CSV</span><span class="tag">Desktop</span></div>
+      <h3>🏫 School Management System</h3>
+      <p>A desktop application developed using <b>Python & CSV</b> to efficiently store and manage student, teacher, and staff data.</p>
+      <a href="https://github.com/Drashvi/School-Mnagement-System" target="_blank" class="btn">🔗 View Project</a>
+    </div>
+    <div class="project-card">
+      <div class="project-tags"><span class="tag">React</span><span class="tag">Web</span></div>
+      <h3>🎓 Smart Campus App</h3>
+      <p>Designed a platform to solve campus-related problems with <b>real-time event tracking</b>.</p>
+      <a href="https://github.com/TheDeceiver31/Fuzz_our-college-app" target="_blank" class="btn">🔗 View Project</a>
+    </div>
+  </div>
+</section>
+
+<!-- 🏆 Awards and Achievements Section -->
+<section class="container awards" id="awards" data-aos="fade-up">
+  <h2>🏆 Awards & Achievements</h2>
+  <div class="awards-timeline">
+    <div class="timeline-item">
+      <div class="award-icon">🚀</div>
+      <div class="award-content">
+        <h3>NASA Space Apps Challenge <span class="award-badge">2024</span></h3>
+        <p class="award-meta"><i>Tools: Python, Three.js, 3D Modeling, Data Visualization Libraries</i></p>
+        <ul>
+          <li>Developed a 3D solar system simulation with interactive planetary visualization.</li>
+          <li>Enhanced learning with educational content for real-time celestial phenomenon exploration.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="award-icon">🏅</div>
+      <div class="award-content">
+        <h3>HackGenesis'24 <span class="award-badge">2024</span></h3>
+        <p class="award-meta"><i>Tools: Python, Three.js, 3D Modeling, Data Visualization Libraries</i></p>
+        <ul>
+          <li>Secured 3rd place in more than 15 Teams by developing a smart campus platform with dynamic features.</li>
+          <li>Implemented event calendars, healthcare navigation, and responsive UI for user engagement.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="award-icon">🔒</div>
+      <div class="award-content">
+        <h3>Tata Cybersecurity Analyst Job Simulation <span class="award-badge">2024</span></h3>
+        <p class="award-meta"><i>Cybersecurity Analyst</i></p>
+        <ul>
+          <li>Completed IAM job simulation, gaining hands-on cybersecurity experience.</li>
+          <li>Delivered presentations demonstrating effective technical communication and documentation skills.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Links Section -->
+  <div class="social-links" data-aos="fade-up">
+    <a href="https://github.com/Drashvi" target="_blank" class="social-btn github"><span>GitHub</span></a>
+    <a href="https://www.linkedin.com/in/drashvi-thoriya-2759b1320/" target="_blank" class="social-btn linkedin"><span>LinkedIn</span></a>
+  </div>
+
+  <section class="container contact" id="contact" data-aos="fade-up">
+    <h2>📬 Contact Me</h2>
+    <form id="contactForm" class="contact-form" action="https://formspree.io/f/xblgnlev" method="POST" autocomplete="off">
+      <div class="form-group floating-label">
+        <input type="text" id="name" name="name" required />
+        <label for="name">Full Name</label>
+      </div>
+      <div class="form-group floating-label">
+        <input type="email" id="email" name="email" required />
+        <label for="email">Email</label>
+      </div>
+      <div class="form-group floating-label">
+        <textarea id="message" name="message" rows="4" required></textarea>
+        <label for="message">Message</label>
+      </div>
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="formStatus" class="form-status"></p>
+  </section>
+  
+
+  <script src="script.js"></script>
+
+  <!-- Custom Alert Modal -->
+  <div class="custom-alert" id="customAlert">
+    <div class="alert-box">
+      <p>Thanks for visiting Drashvi's Portfolio! ✨</p>
+      <button onclick="closeAlert()">Close</button>
+    </div>
+  </div>
+
+  <!-- Modern Footer with Copyright -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="copyright">&copy; 2024 Drashvi Thoriya. All rights reserved.</p>
+      <div class="footer-divider"></div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="mailto:contact@drashvi.dev" class="footer-link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.showMessage = showMessage;
+    window.closeAlert = closeAlert;
+  </script>
+
+</body>
+</html>
